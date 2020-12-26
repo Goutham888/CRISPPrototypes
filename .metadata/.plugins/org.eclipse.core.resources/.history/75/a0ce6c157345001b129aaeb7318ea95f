@@ -1,0 +1,82 @@
+package com.spring.mvc.security.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Component;
+
+import com.spring.mvc.security.pojo.StoreRecord;
+
+@Component
+public class RecordsDao {
+	
+	//This is the login information for the current DB don't steal it
+		String userName = "postgres";
+		String password = "PostgreSQL_2230?";
+		String hostname = "localhost";
+		String port = "5433";
+		String dbName="CRISPSpringMVCPrototype";
+		String jdbcUrl = "jdbc:postgresql://"+hostname+":"+port+"/"+dbName;
+		
+	public ArrayList<StoreRecord> retrieveRecords(String store, String item) {
+		String quantity="error";
+		String address="error";
+		ArrayList<StoreRecord> results = new ArrayList<StoreRecord>();
+		StoreRecord temp=new StoreRecord();
+				try {
+					DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
+					
+					//Just confirming the connection
+					System.out.println("Got DB connection");
+					
+					//Just selecting from the database if there is a username and password match
+					PreparedStatement ps = con.prepareStatement("select * from products where store_name=? and item=?");
+					
+					//Replacing the ?'s with the actually input data
+					ps.setString(1, store);	
+					//The password is SHA-256 protected so there's another method that encrypts the password given and compares 
+					//it with the one in the DB
+					ps.setString(2, item);
+					
+					//Query is executed
+					ResultSet rs = ps.executeQuery();
+
+					 while(rs.next()) {
+						 switch(rs.getInt("quantity")) {
+				         case 1 :
+				            quantity="Low";
+				            break;
+				         case 2 :
+				        	 quantity="Medium";
+					         break;
+				         case 3 :
+				        	 quantity="High";
+				            break;
+				      }//end of switch statement
+						 
+						 address=rs.getString("store_street_pos")+" "+rs.getString("store_street")+" "+
+								 rs.getString("city")+" "+rs.getString("state")+" "+rs.getString("zipcode");
+						 
+						 temp.setStore(store);
+						 temp.setAddress(address);
+						 temp.setQuantity(quantity);
+						 temp.setItem(item);
+						 results.add(temp);
+								 
+						 System.out.println("There is "+quantity+" "+item+" at "+ store +" at "+address);
+					 }
+					 ps.close();
+					 return results;
+					 
+					
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return results;
+				} 
+	}
+}

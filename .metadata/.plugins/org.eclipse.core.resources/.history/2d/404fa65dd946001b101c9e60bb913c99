@@ -1,0 +1,71 @@
+package com.spring.mvc.security.Authentication;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
+
+import com.spring.mvc.security.dao.PersonDao;
+import com.spring.mvc.security.pojo.Person;
+
+
+//This class implements the UserDetailsService interface to authenticate users
+//This class is referenced in a bean in security.xml
+public class MongoUserDetailService implements UserDetailsService{
+	
+	
+	//These are values that are not stored in the DB that need to be passed forward to authenticate users
+	private boolean accountNonExpired = false;
+	private boolean credentialsNonExpired = false;
+	private boolean accountNonLocked = false;
+	
+	//This is a object to pull information from the DB. 
+	//It stores it in a Pojo called Person (see com.spring.mvc.security.pojo.Person)
+	PersonDao pDao = new PersonDao();
+	
+	//This is the method overridden from UserDetailsService
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+		System.out.println("Hi we're in the user detail service for "+username); //just a check
+		
+		Person user = pDao.getPerson(username);//an POJO object is filled with info regarding the requested user
+		System.out.println("Hi we recieved the records for "+username);//just a check
+		if(user == null) {//if the user does not exist return null
+			System.out.println("the user is null");
+			return null;
+		}
+		
+		if(user.getEnabled()) {//we only store whether or not the user is enabled in the DB so the rest of these values are dependent on this
+			accountNonExpired = true;
+	        credentialsNonExpired = true;
+	        accountNonLocked = true;
+		}
+		
+		//This User object is from the framework. This is also the reason my Pojo is named Person rather than User 
+		return new User(user.getUsername(), user.getPassword(), 
+                user.getEnabled(),accountNonExpired,credentialsNonExpired, accountNonLocked, getAuthorities(user.getRole()));
+		
+	
+	}
+	//there is a list of authorities that need to be passed along with the user object. I just put it role_admin into all the current types
+	//In the future inferior users can be role_user
+	private List<SimpleGrantedAuthority> getAuthorities(String role) {
+        List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();
+        if (role.equals("ROLE_ADMIN")){
+            authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+        } else {
+            authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+        System.out.println(authList);
+        return authList;
+    }
+}

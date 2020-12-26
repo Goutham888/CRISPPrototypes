@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.mongodb.MongoClient"/>
+    <fullyQualifiedTypeName name="com.mongodb.DBCollection"/>
+    <fullyQualifiedTypeName name="com.mongodb.DBObject"/>
+    <fullyQualifiedTypeName name="com.mongodb.BasicDBObject"/>
+    <fullyQualifiedTypeName name="com.spring.mvc.security.pojo.Person"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.authority.SimpleGrantedAuthority"/>
+    <fullyQualifiedTypeName name="com.spring.mvc.security.dao.PersonDao"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="org.springframework.dao.DataAccessException"/>
+    <fullyQualifiedTypeName name="org.springframework.security.authentication.InternalAuthenticationServiceException"/>
+</qualifiedTypeNameHistroy>

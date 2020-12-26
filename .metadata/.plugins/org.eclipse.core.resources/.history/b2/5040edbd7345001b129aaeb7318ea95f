@@ -1,0 +1,86 @@
+package com.spring.mvc.security.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Component;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.spring.mvc.security.pojo.StoreRecord;
+
+@Component
+public class RecordsDao {
+	
+	/*This is information for PostgreSQL
+		String userName = "postgres";
+		String password = "PostgreSQL_2230?";
+		String hostname = "localhost";
+		String port = "5433";
+		String dbName="CRISPSpringMVCPrototype";
+		String jdbcUrl = "jdbc:postgresql://"+hostname+":"+port+"/"+dbName;*/
+	String db_name="CRISPMongoDBPrototype";
+	String db_collection="products";
+		
+	public ArrayList<StoreRecord> retrieveRecords(String store, String item) {
+		String quantity="error";
+		String address="error";
+		ArrayList<StoreRecord> results = new ArrayList<StoreRecord>();
+		StoreRecord temp=new StoreRecord();
+				try {
+					DBCollection coll = MongoFactory.getCollection(db_name, db_collection);
+					
+					//Just confirming the connection
+					System.out.println("Got DB connection");
+					
+					//Just selecting from the database if there is a username and password match
+					PreparedStatement ps = con.prepareStatement("select * from products where store_name=? and item=?");
+					// Fetching the record object from the mongo database.
+			        DBObject where_query = new BasicDBObject();
+			        where_query.put("store_name", store);
+			        where_query.put("item", item);
+					
+			        DBCursor cursor = coll.find(where_query);       
+			        while(cursor.hasNext()) {           
+			            DBObject dbObject = cursor.next();
+			 
+			            switch((int)(dbObject.get("id"))) {
+				         case 1 :
+				            quantity="Low";
+				            break;
+				         case 2 :
+				        	 quantity="Medium";
+					         break;
+				         case 3 :
+				        	 quantity="High";
+				            break;
+				      }//end of switch statement
+						 
+						 address=dbObject.get("store_street_pos")+" "+dbObject.get("store_street")+" "+
+								 dbObject.get("city")+" "+dbObject.get("state")+" "+dbObject.get("zipcode");
+						 
+						 temp.setStore(store);
+						 temp.setAddress(address);
+						 temp.setQuantity(quantity);
+						 temp.setItem(item);
+						 results.add(temp);
+								 
+						 System.out.println("There is "+quantity+" "+item+" at "+ store +" at "+address);
+			        }
+			        
+					 return results;
+					 
+					
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return results;
+				} 
+	}
+}

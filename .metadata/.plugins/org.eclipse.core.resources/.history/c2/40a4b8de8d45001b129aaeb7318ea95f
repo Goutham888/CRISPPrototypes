@@ -1,0 +1,5 @@
+package com.spring.mvc.security.dao;
+
+public class UserDao {
+
+}
