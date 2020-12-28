@@ -1,5 +1,0 @@
-package com.spring.mvc.security.Authentication;
-
-public class MongoUserDetailService {
-
-}
