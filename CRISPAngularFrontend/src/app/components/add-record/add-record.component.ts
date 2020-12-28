@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storerecord } from 'src/app/models/storerecord';
 import { StorerecordService } from 'src/app/services/storerecord.service';
-import { Router } from '@angular/router';//needed to route between pages
+import { Router, ActivatedRoute } from '@angular/router';//needed to route between pages
 
 @Component({
   selector: 'app-add-record',
@@ -12,9 +12,17 @@ export class AddRecordComponent implements OnInit {
 
   record: Storerecord = new Storerecord();
   constructor(private _storeRecordService: StorerecordService,
-              private _router: Router) { }
+              private _router: Router,
+              private _activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {//the stuff in here makes sure that the values are filled in when editing a record
+    const idPresent = this._activatedRoute.snapshot.paramMap.has('id');
+    if(idPresent){
+      const id = +this._activatedRoute.snapshot.paramMap.get('id');//the + in the beginning converts it to a number
+      this._storeRecordService.getRecord(id).subscribe(
+        data => this.record = data
+      )
+    }
   }
 
   saveRecord(){

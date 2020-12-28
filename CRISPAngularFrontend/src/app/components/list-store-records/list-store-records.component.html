@@ -1,5 +1,8 @@
+<a routerLink="/addrecord">Add Record</a>
 <div *ngFor="let record of records">
 
 	<h3>{{record.store_name}} has {{record.item}}</h3>
+	<a routerLink="/editrecord/{{record.record_id}}">Edit</a><!--go to edit record route (addrecord component)-->
+															<!--uses the current record's id to prefill the fields to edit-->
 
 </div>

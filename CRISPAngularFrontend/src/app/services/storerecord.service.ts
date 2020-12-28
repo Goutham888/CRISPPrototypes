@@ -24,4 +24,10 @@ export class StorerecordService {
     return this._httpClient.post<Storerecord>(this.getURL, record);//posts the record to the get URL.
     //the getURL is used here b/c the same url is used for posts and gets in the java code
   }
+
+  getRecord(id: number): Observable<Storerecord> {
+    return this._httpClient.get<Storerecord>(`${this.getURL}/${id}`).pipe(
+      map(response => response)
+    )
+  }
 }

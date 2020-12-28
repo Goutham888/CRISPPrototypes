@@ -1,1 +1,12 @@
-<p>add-record works!</p>
+<form (ngSubmit)="saveRecord()"><!--on submit the saveRecord method is submitted-->
+	<input type="text" name="store_name" [(ngModel)]="record.store_name"><!--this inputs set the fields of the record being submitted-->
+	<input type="text" name="store_street_pos" [(ngModel)]="record.store_street_pos">
+	<input type="text" name="store_street" [(ngModel)]="record.store_street">
+	<input type="text" name="city" [(ngModel)]="record.city">
+	<input type="text" name="state" [(ngModel)]="record.state">
+	<input type="text" name="zipcode" [(ngModel)]="record.zipcode">
+	<input type="text" name="item" [(ngModel)]="record.item">
+	<input type="text" name="quantity" [(ngModel)]="record.quantity">
+
+	<button type="submit">Add Record</button><!--this button submits the record values-->
+</form>
