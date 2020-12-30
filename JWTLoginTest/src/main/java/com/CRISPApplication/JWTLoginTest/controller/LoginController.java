@@ -21,6 +21,7 @@ import com.CRISPApplication.JWTLoginTest.util.JwtUtils;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/api/v1")//not quite sure what this is
 public class LoginController {
 	@Autowired
 	private PersonService pServ;

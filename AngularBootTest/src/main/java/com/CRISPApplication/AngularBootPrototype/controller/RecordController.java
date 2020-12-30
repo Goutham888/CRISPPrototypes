@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.CRISPApplication.AngularBootPrototype.model.StoreRecord;
 import com.CRISPApplication.AngularBootPrototype.service.RecordService;
 
-@CrossOrigin("*")
+
 @RestController//marking it as a rest controller
-@RequestMapping("/api/v1")//not quite sure what this is
+@RequestMapping("/api")
 public class RecordController {
 	
 	@Autowired

@@ -25,18 +25,17 @@ export class SecurityComponent  {
 
   public getAccessToken(form: NgForm){
 
-    alert("gggg");
     const response = this.secService.generateToken(form.value)
     response.subscribe(
-      data => console.log("token", data)
+      data => this.accessApi(data)
     );
-
+    
   }
 
   public accessApi(token){
     console.log("Get request sent")
     this.secService.welcome(token).subscribe(
-      data => console.log("Message",data)
+      data => this.loginMessage=data
     );
     
 
