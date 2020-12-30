@@ -1,0 +1,12 @@
+<h1> Template-Based Contact Form Example </h1>
+
+<form #myform = "ngForm" (ngSubmit) = "getAccessToken(myform)" >
+  <input type = "text" name = "username" placeholder = "Username" ngModel>
+  <br/>
+
+  <input type = "password" name = "password" placeholder = "Password" ngModel>
+  <br/>
+
+  <br/>
+  <input type = "submit" value = "Send">
+</form>
