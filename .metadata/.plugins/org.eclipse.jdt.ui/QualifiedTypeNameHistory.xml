@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.swing.text.Document"/>
-    <fullyQualifiedTypeName name="org.springframework.data.mongodb.core.mapping.Document"/>
-    <fullyQualifiedTypeName name="com.mongodb.Mongo"/>
-    <fullyQualifiedTypeName name="com.mongodb.client.FindIterable"/>
     <fullyQualifiedTypeName name="com.mongodb.client.MongoCursor"/>
     <fullyQualifiedTypeName name="org.bson.Document"/>
     <fullyQualifiedTypeName name="com.spring.mvc.security.dao.PersonDao"/>
@@ -25,7 +21,6 @@
     <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configuration.EnableWebSecurity"/>
     <fullyQualifiedTypeName name="org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -47,7 +42,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.filter.OncePerRequestFilter"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.util.JwtUtils"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
     <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.service.CustomUserDetailsService"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
@@ -60,4 +54,10 @@
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.CorsRegistry"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpMethod"/>
+    <fullyQualifiedTypeName name="javax.persistence.Table"/>
+    <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.repository.StoreRecordRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.service.StoreRecordService"/>
+    <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.entity.StoreRecord"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
 </qualifiedTypeNameHistroy>

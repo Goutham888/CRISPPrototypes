@@ -1,0 +1,18 @@
+
+<form (ngSubmit)="sendRequest()"><!--on submit the saveRecord method is submitted-->
+	<input type="text" name="zipcode" [(ngModel)]="record.zipcode"><!--this inputs set the fields of the record being submitted-->
+
+  <label for="item"> Choose Item: </label><br>
+    <select name="item" [(ngModel)]="record.item">
+      <option value="water">water</option>
+	    <option value="canned food">canned food</option>
+	    <option value="soap">soap</option>
+      <option value="toilet paper">toilet paper</option>
+    </select>
+
+	<button type="submit">Submit Request</button><!--this button submits the record values-->
+</form>
+<p>Store: {{result.store_name}}</p><br>
+<p>Address: {{result.store_street_pos}} {{result.store_street}}</p><br>
+<p>{{result.city}}, {{result.state}} {{result.zipcode}}</p><br>
+<p>Amount: {{result.quantity}}</p>

@@ -13,7 +13,7 @@ export class ListStoreRecordsComponent implements OnInit {
   constructor(private _storeRecordService: StorerecordService) { }//the constructor for the component has the service in it
 
   ngOnInit(): void {
-    this._storeRecordService.getRecords().subscribe(//what does subscribe mean?
+    this._storeRecordService.getRecords().subscribe(//what does subscribe mean? It is a way of extracting data from an observable<> object
       data => this.records = data//why is data set in this weird way?
     )
   }

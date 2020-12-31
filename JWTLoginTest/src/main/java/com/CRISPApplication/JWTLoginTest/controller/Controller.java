@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.CRISPApplication.JWTLoginTest.entity.AuthRequest;
 import com.CRISPApplication.JWTLoginTest.entity.Person;
+import com.CRISPApplication.JWTLoginTest.entity.RecordRequest;
+import com.CRISPApplication.JWTLoginTest.entity.StoreRecord;
 import com.CRISPApplication.JWTLoginTest.service.PersonService;
+import com.CRISPApplication.JWTLoginTest.service.StoreRecordService;
 import com.CRISPApplication.JWTLoginTest.util.JwtUtils;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/v1")//not quite sure what this is
-public class LoginController {
+public class Controller {
 	@Autowired
 	private PersonService pServ;
 	
@@ -32,20 +36,30 @@ public class LoginController {
 	@Autowired
 	private AuthenticationManager aMan;
 	
+	@Autowired
+	private StoreRecordService strRecServ;
+	
 	@GetMapping("/")
 	public String welcome() {
 		return "Hi you logged in!";
 			
 	}
 	
-	@GetMapping("/users")
-	public ResponseEntity<List<Person>> getPersons(){
-		List<Person> people = pServ.findAll();//call the findAll() command
-		if(people==null) {
+	@GetMapping("/records")
+	public ResponseEntity<List<StoreRecord>> getPersons(){
+		List<StoreRecord> records = strRecServ.findAll();//call the findAll() command
+		if(records==null) {
 			System.out.println("records is null");
 		}
-		return new ResponseEntity<List<Person>>(people, HttpStatus.OK);//return a new entity and set HttpStatus to ok. 
+		return new ResponseEntity<List<StoreRecord>>(records, HttpStatus.OK);//return a new entity and set HttpStatus to ok. 
 		//I still don't understand how findAll will get called when you use the interface
+	}
+	@PostMapping("/recordRequest")//when records is called
+	public ResponseEntity<StoreRecord> get(@RequestBody RecordRequest recRequest){
+		System.out.println("hey /records/{id} was touched by get");
+		StoreRecord record = strRecServ.findByZipItem(recRequest.getZipcode(), recRequest.getItem());//call the findById() command
+		return new ResponseEntity<StoreRecord>(record, HttpStatus.OK);//return a new entity and set HttpStatus to ok. 
+		//I still don't understand how findById() will get called when you use the interface
 	}
 	
 	@PostMapping("/authenticate")
