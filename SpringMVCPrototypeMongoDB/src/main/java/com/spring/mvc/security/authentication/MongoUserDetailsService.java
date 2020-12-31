@@ -32,19 +32,14 @@ public class MongoUserDetailsService implements UserDetailsService{
 			credentialsNonExpired = true;
 			accountNonLocked = true;
 		}
-		
+		System.out.println(user.getRole());
 		return new User(user.getUsername(), user.getPassword(), user.isEnabled(),
-				accountNonExpired,credentialsNonExpired,accountNonLocked,getAuthorities(user.getRole()));
+				accountNonExpired,credentialsNonExpired,accountNonLocked,getAuthorities());
 	}
 	
-	private List<SimpleGrantedAuthority> getAuthorities(String role){
+	private List<SimpleGrantedAuthority> getAuthorities(){
 		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();
-		if(role.equals("ROLE_ADMIN")) {
-			authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		}
-		else {
-			authList.add(new SimpleGrantedAuthority("ROLE_USER"));
-		}
+		authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		return authList;
 	}
 
