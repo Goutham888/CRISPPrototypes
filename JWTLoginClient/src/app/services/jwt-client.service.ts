@@ -33,10 +33,10 @@ export class JwtClientService {
     )
   }
 
-  public zipItemRequest(recordRequest,token): Observable<Storerecord> {
+  public zipItemRequest(recordRequest,token): Observable<Storerecord[]> {
     let tokenStr = 'Bearer '+token;
     const headers = new HttpHeaders().set('Authorization', tokenStr);
-    return this._httpClient.post<Storerecord>("/api/v1/recordRequest",recordRequest,{headers}).pipe(
+    return this._httpClient.post<Storerecord[]>("/api/v1/recordRequest",recordRequest,{headers}).pipe(
       map(response => response)
     )
   }

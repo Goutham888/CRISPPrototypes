@@ -12,7 +12,11 @@
 
 	<button type="submit">Submit Request</button><!--this button submits the record values-->
 </form>
-<p>Store: {{result.store_name}}</p><br>
-<p>Address: {{result.store_street_pos}} {{result.store_street}}</p><br>
-<p>{{result.city}}, {{result.state}} {{result.zipcode}}</p><br>
-<p>Amount: {{result.quantity}}</p>
+<div *ngFor="let result of results">
+
+  <p>Store: {{result.store_name}}</p><br>
+  <p>Address: {{result.store_street_pos}} {{result.store_street}}</p><br>
+  <p>{{result.city}}, {{result.state}} {{result.zipcode}}</p><br>
+  <p>Amount: {{result.quantity}}</p>
+
+</div>

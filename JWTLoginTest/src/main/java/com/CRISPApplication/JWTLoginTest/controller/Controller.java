@@ -55,11 +55,10 @@ public class Controller {
 		//I still don't understand how findAll will get called when you use the interface
 	}
 	@PostMapping("/recordRequest")//when records is called
-	public ResponseEntity<StoreRecord> get(@RequestBody RecordRequest recRequest){
+	public ResponseEntity<List<StoreRecord>> get(@RequestBody RecordRequest recRequest){
 		System.out.println("hey /records/{id} was touched by get");
-		StoreRecord record = strRecServ.findByZipItem(recRequest.getZipcode(), recRequest.getItem());//call the findById() command
-		return new ResponseEntity<StoreRecord>(record, HttpStatus.OK);//return a new entity and set HttpStatus to ok. 
-		//I still don't understand how findById() will get called when you use the interface
+		List<StoreRecord> record = strRecServ.findByZipItem(recRequest.getZipcode(), recRequest.getItem());//call the findById() command
+		return new ResponseEntity<List<StoreRecord>>(record, HttpStatus.OK);//return a new entity and set HttpStatus to ok. 
 	}
 	
 	@PostMapping("/authenticate")

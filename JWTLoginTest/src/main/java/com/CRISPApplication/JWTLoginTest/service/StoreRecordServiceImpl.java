@@ -20,7 +20,7 @@ public class StoreRecordServiceImpl implements StoreRecordService{
 	}
 
 	@Override
-	public StoreRecord findByZipItem(Integer zipcode, String item) {
+	public List<StoreRecord> findByZipItem(Integer zipcode, String item) {
 		return strRecRep.findByZipItem(zipcode, item);
 	}
 	

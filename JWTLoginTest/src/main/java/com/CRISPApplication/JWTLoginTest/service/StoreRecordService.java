@@ -8,5 +8,5 @@ import com.CRISPApplication.JWTLoginTest.entity.StoreRecord;
 public interface StoreRecordService {
 	List<StoreRecord> findAll();
 	
-	StoreRecord findByZipItem(Integer zipcode, String item);
+	List<StoreRecord> findByZipItem(Integer zipcode, String item);
 }

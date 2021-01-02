@@ -12,7 +12,7 @@ import { Storerecord } from 'src/app/models/store-record';
 export class RecordRequestComponent implements OnInit {
 
   record: RecordRequest = new RecordRequest();
-  result: Storerecord = new Storerecord();
+  results: Storerecord[] = [ ];
   constructor(private _jwtClientService: JwtClientService) { }
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class RecordRequestComponent implements OnInit {
 
   public setRequest(request, token){
     this._jwtClientService.zipItemRequest(request,token).subscribe(
-      data => this.result = data
+      data => this.results = data
     );
   }
 
