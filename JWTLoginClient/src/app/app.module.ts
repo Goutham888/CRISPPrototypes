@@ -9,7 +9,7 @@ import { SecurityComponent } from './components/security/security.component';
 import { RecordDisplayComponent } from './components/record-display/record-display.component';
 import { RecordRequestComponent } from './components/record-request/record-request.component';
 
-const routes: Routes = [
+const routes: Routes = [//defines what routes go to what components
   {path: 'records', component: RecordDisplayComponent},//when /records is called use the recordsdisplay component
   {path: 'security', component: SecurityComponent},//when /security is called use the security component
   {path: 'recordRequest', component: RecordRequestComponent},//when /recordRequest is called use the recordRequest component

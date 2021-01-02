@@ -24,8 +24,8 @@ import com.CRISPApplication.JWTLoginTest.service.StoreRecordService;
 import com.CRISPApplication.JWTLoginTest.util.JwtUtils;
 
 @RestController
-@CrossOrigin("*")
-@RequestMapping("/api/v1")//not quite sure what this is
+@CrossOrigin("*")//enables front applications from different ports to access this backend
+@RequestMapping("/api/v1")//url of this application
 public class Controller {
 	@Autowired
 	private PersonService pServ;
@@ -39,29 +39,28 @@ public class Controller {
 	@Autowired
 	private StoreRecordService strRecServ;
 	
-	@GetMapping("/")
+	@GetMapping("/")//the "/" request mapping will return a string
 	public String welcome() {
 		return "Hi you logged in!";
 			
 	}
 	
-	@GetMapping("/records")
+	@GetMapping("/records")//the "/records" request mapping will return a list of all the StoreRecords in the DB
 	public ResponseEntity<List<StoreRecord>> getPersons(){
 		List<StoreRecord> records = strRecServ.findAll();//call the findAll() command
-		if(records==null) {
+		if(records==null) {//check if any were returned
 			System.out.println("records is null");
 		}
-		return new ResponseEntity<List<StoreRecord>>(records, HttpStatus.OK);//return a new entity and set HttpStatus to ok. 
-		//I still don't understand how findAll will get called when you use the interface
+		return new ResponseEntity<List<StoreRecord>>(records, HttpStatus.OK);//return a new entity and set HttpStatus to ok.
 	}
-	@PostMapping("/recordRequest")//when records is called
+	@PostMapping("/recordRequest")//The "/recordRequest" post mapping will return a list of of StoreRecords that match the request
 	public ResponseEntity<List<StoreRecord>> get(@RequestBody RecordRequest recRequest){
 		System.out.println("hey /records/{id} was touched by get");
 		List<StoreRecord> record = strRecServ.findByZipItem(recRequest.getZipcode(), recRequest.getItem());//call the findById() command
 		return new ResponseEntity<List<StoreRecord>>(record, HttpStatus.OK);//return a new entity and set HttpStatus to ok. 
 	}
 	
-	@PostMapping("/authenticate")
+	@PostMapping("/authenticate")//The "/authenticate" post mapping will return a token if the username and password can be authenticated
 	public String generateToken(@RequestBody AuthRequest authRequest) throws Exception{
 		
 		try {//try to authenticate a request with the given username and pasword
@@ -71,6 +70,6 @@ public class Controller {
 		catch(Exception e) {//if it fails give error message
 			throw new Exception("rip invalid credentials");
 		}
-		return jwtUtils.generateToken(authRequest.getUsername());
+		return jwtUtils.generateToken(authRequest.getUsername());//this generates the token based on username and sends it back
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.CRISPApplication.JWTLoginTest.entity.Person;
 
-public interface PersonService {
+public interface PersonService {//the interface that determines methods used by the controller to get data
 	
 	List<Person> findAll();
 }

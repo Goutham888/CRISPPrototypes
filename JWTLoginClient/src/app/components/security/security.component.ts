@@ -12,27 +12,24 @@ export class SecurityComponent  {
   loginMessage:any='unchanged';
 
 
-  constructor(private secService: JwtClientService) { }
+  constructor(private secService: JwtClientService) { }//the client service is injected into the constructor
 
   ngOnInit(): void {
 
 
   }
 
-  onSubmit(form: NgForm) {
-      console.log('Your form data : ', form.value);
-  }
 
-  public getAccessToken(form: NgForm){
+  public getAccessToken(form: NgForm){//the form is an argument
 
-    const response = this.secService.generateToken(form.value)
-    response.subscribe(
-      data => this.accessApi(data)
+    const response = this.secService.generateToken(form.value)//the token is generated directly form the form data
+    response.subscribe(//the subscribe method is used to get values from Observable<> objects
+      data => this.accessApi(data)//calls the accessAPI method
     );
     
   }
 
-  public accessApi(token){
+  public accessApi(token){//this uses the token to get a login confirmation from the backend
     console.log("Get request sent")
     this.secService.welcome(token).subscribe(
       data => this.loginMessage=data

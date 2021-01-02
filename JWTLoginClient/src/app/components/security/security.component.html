@@ -1,6 +1,6 @@
 <h1> CRISP Login Form </h1>
-<a routerLink="/recordRequest">See Records</a>
-<form #myform = "ngForm" (ngSubmit) = "getAccessToken(myform)" >
+<a routerLink="/recordRequest">See Records</a><!--link to query-->
+<form #myform = "ngForm" (ngSubmit) = "getAccessToken(myform)" ><!--the form for the username and pass word-->
   <input type = "text" name = "username" placeholder = "Username" ngModel>
   <br/>
 
@@ -10,5 +10,4 @@
   <br/>
   <input type = "submit" value = "Send">
 </form>
-<p>{{loginMessage}}</p>
-<p>{{secToken}}</p>
+<p>{{loginMessage}}</p><!--confirmation for the login-->

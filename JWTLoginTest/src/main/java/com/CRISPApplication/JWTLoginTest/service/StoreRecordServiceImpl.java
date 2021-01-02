@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import com.CRISPApplication.JWTLoginTest.entity.StoreRecord;
 import com.CRISPApplication.JWTLoginTest.repository.StoreRecordRepository;
 
-@Service
-public class StoreRecordServiceImpl implements StoreRecordService{
+@Service//defined as a service, lights up in component scan
+public class StoreRecordServiceImpl implements StoreRecordService{//the implementation of Person service that gives a body 
+																//to the methods defined in PersonService
 	
 	@Autowired
 	StoreRecordRepository strRecRep;

@@ -29,7 +29,6 @@
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.entity.Person"/>
     <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.repository.PersonRepository"/>
     <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.service.PersonService"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.service.StoreRecordService"/>
     <fullyQualifiedTypeName name="com.CRISPApplication.JWTLoginTest.entity.StoreRecord"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

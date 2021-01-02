@@ -21,8 +21,9 @@ public class CustomUserDetailsService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Person p = pRep.findByUsername(username);
-		return new User(p.getUsername(), p.getPassword(), new ArrayList<>());//not doing roles so that Array list is empty
+		Person p = pRep.findByUsername(username);//find by username from the repository
+		return new User(p.getUsername(), p.getPassword(), new ArrayList<>());
+		//the third argument is roles, I didn't use them so its an empty arrayList 
 		
 	}
 

@@ -19,8 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.CRISPApplication.JWTLoginTest.filter.JwtFilter;
 import com.CRISPApplication.JWTLoginTest.service.CustomUserDetailsService;
 
-@Configuration
-@EnableWebSecurity
+@Configuration//this is a config file
+@EnableWebSecurity//enables security for the project
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		auth.userDetailsService(cuds);
+		auth.userDetailsService(cuds);//uses the custom user details object to authenticate users
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.anyRequest().authenticated()
 		.and().exceptionHandling().and().sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);;
+		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);;//registering the jwt filter
 		//disable csrf, authorize requests, for any /authenticate url permit all, but for anything else authenticate
 		//enable stateless session creation policy, and regsiter jwt filter
 		
@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();//this means that there is no actual encoding happening
 		//I  didn't want to complicate it past necessity
+		//In future developments the password should be encoded
 	}
 	
 	

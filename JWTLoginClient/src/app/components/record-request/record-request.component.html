@@ -12,7 +12,7 @@
 
 	<button type="submit">Submit Request</button><!--this button submits the record values-->
 </form>
-<div *ngFor="let result of results">
+<div *ngFor="let result of results"><!--Angular's way of doing a for loop through an array in html-->
 
   <p>Store: {{result.store_name}}</p><br>
   <p>Address: {{result.store_street_pos}} {{result.store_street}}</p><br>

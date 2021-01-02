@@ -13,7 +13,7 @@ public class StoreRecord {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)//this makes store_id a unique primary keu
-	private long record_id;
+	private long record_id;//all of these variables are columns in the table
 	private String store_name;
 	private int store_street_pos;
 	private String store_street;

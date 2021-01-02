@@ -1,4 +1,4 @@
-export class Storerecord {
+export class Storerecord {//a model that matches the storerecord entity in the backend code
 	record_id: number;
 	store_name: string;
 	store_street_pos: string;

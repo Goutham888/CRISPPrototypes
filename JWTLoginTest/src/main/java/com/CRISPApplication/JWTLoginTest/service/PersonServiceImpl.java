@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import com.CRISPApplication.JWTLoginTest.entity.Person;
 import com.CRISPApplication.JWTLoginTest.repository.PersonRepository;
 
-@Service
-public class PersonServiceImpl implements PersonService{
+@Service//defined as a service, lights up in component scan
+public class PersonServiceImpl implements PersonService{//the implementation of Person service that gives a body 
+														//to the methods defined in PersonService
 	
 	@Autowired
 	private PersonRepository pRep;

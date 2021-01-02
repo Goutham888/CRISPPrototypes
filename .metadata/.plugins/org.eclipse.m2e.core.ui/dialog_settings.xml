@@ -6,6 +6,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Goutham\CRISPApplicationPersonal\JWTLoginTest"/>
 			<item value="C:\Users\Goutham\CRISPApplication\JWTLoginTest"/>
 			<item value="C:\Users\Goutham\CRISPApplication\AngularSpringBootLoginTest"/>
 			<item value="C:\Users\Goutham\CRISPApplication\AngularBootLoginTest"/>

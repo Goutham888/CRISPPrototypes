@@ -1,6 +1,7 @@
 package com.CRISPApplication.JWTLoginTest.entity;
 
-public class AuthRequest {
+public class AuthRequest {//this is an object that holds a username and password
+							//it's only purpose is to map the info from Angular to here
 	
 	
 	private String username;

@@ -13,14 +13,14 @@ export class RecordDisplayComponent implements OnInit {
   records: Storerecord[] = [ ];//this is the array referenced in the .html part of the component
   constructor(private _jwtClientService: JwtClientService) { }//the constructor for the component has the service in it
 
-  ngOnInit(): void {
+  ngOnInit(): void {//on init it calls the getRecords
     this._jwtClientService.tokenString.subscribe(
       data => this.getRecords(data)
     );
     
   }
 
-  public getRecords(token){
+  public getRecords(token){//uses the token to get all the records and sets the record object to the output
     console.log("Records are being brought");
     console.log(token);
     this._jwtClientService.getRecords(token).subscribe(

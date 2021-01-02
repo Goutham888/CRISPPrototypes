@@ -13,18 +13,19 @@ export class RecordRequestComponent implements OnInit {
 
   record: RecordRequest = new RecordRequest();
   results: Storerecord[] = [ ];
-  constructor(private _jwtClientService: JwtClientService) { }
+  constructor(private _jwtClientService: JwtClientService) { }//service is injected into the constructor
 
   ngOnInit(): void {
   }
 
-  public sendRequest(){
+  public sendRequest(){//the constructor takes the tokenString from the client service
     this._jwtClientService.tokenString.subscribe(
-      data => this.setRequest(this.record, data)
+      data => this.setRequest(this.record, data)//the token is used to send the request
     );
   }
 
-  public setRequest(request, token){
+  public setRequest(request, token){//actually sends the request object to the client service
+    //the record request object is used to fill in the user's fields and send it to the backend
     this._jwtClientService.zipItemRequest(request,token).subscribe(
       data => this.results = data
     );

@@ -10,8 +10,8 @@ import javax.persistence.Id;
 public class Person {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)//this makes store_id a unique primary keu
-	private long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)//this makes store_id a unique primary key
+	private long id;//all of these variables will become columns in the table
 	private String username;
 	private String password;
 	

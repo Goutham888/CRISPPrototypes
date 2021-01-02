@@ -14,7 +14,7 @@ import java.util.function.Function;
 
 @Service
 public class JwtUtils {
-	//this code came form online so more research needs to be done to undestand the parts of this
+	//I got this code from the internet so I need to spend more time understanding it
 	//the most important methods are createToken and validateToken
 
     private String secret = "javatechie";

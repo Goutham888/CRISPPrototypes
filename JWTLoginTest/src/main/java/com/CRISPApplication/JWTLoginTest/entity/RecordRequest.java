@@ -1,7 +1,7 @@
 package com.CRISPApplication.JWTLoginTest.entity;
 
 
-public class RecordRequest {
+public class RecordRequest {//this is just like AuthRequest, it's just used to map information from angular to here
 	
 	
 	
