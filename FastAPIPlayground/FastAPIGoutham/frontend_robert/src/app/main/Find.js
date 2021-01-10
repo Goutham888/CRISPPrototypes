@@ -52,7 +52,7 @@ function FindPage(props) {
     function handleSubmit(ev) {
         ev.preventDefault();
         // added fetch code: interact with backend
-        fetch("http://127.0.0.1:8000/searchItems/", {
+        fetch("http://127.0.0.1:8000/searchItemsByZipcode/", {
             method: "POST",
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: new URLSearchParams(form)
@@ -86,7 +86,7 @@ function FindPage(props) {
                         <div className="p-24">
                             {results.map((record, index) => (
                             <div key={index}>
-                                <ItemCard item = {record.commodity} store={record.id}/>
+                                <ItemCard item = {record.commodity} store={record.storename}/>
                                 <br></br>
                             </div>
                             ))}
@@ -116,8 +116,9 @@ function FindPage(props) {
                                 value={form.item}
                                 onChange={handleSelectChange}
                                 >
-                                <MenuItem value={'bulbs'}>Bulbs</MenuItem>
-                                <MenuItem value={'paper'}>Paper</MenuItem>
+                                <MenuItem value={'Water'}>Water</MenuItem>
+                                <MenuItem value={'Food'}>Food</MenuItem>
+                                <MenuItem value={'Batteries'}>Batteries</MenuItem>
                             </Select>
                             <br></br>
                             <TextField

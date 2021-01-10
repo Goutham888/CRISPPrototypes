@@ -191,10 +191,9 @@ def read_item(item_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Item not found")
     return db_item
 
-# Read item from the database
-@app.post("/searchItems/", response_model=List[schemas.Item])
-async def search_items(zipcode: int = Form(...), item: str = Form(...), skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    items = crud.search_items(item, db, skip=skip, limit=limit) 
+@app.post("/searchItemsByZipcode/", response_model=List[schemas.FullRecord])
+async def search_items_by_zipcode(zipcode: int = Form(...), item: str = Form(...), skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    items = crud.search_items_by_zipcode(zipcode, item, db, skip=skip, limit=limit) 
     return items
 
 # Read item from the database

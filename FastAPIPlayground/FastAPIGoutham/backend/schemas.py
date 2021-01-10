@@ -88,3 +88,31 @@ class Store(StoreBase):
     description: Optional[str] = None
 
     items: List[Item] = []  # the list of items created by the user
+
+# Base classes store common attributes while creating or reading data.
+class FullRecordBase(BaseModel):
+    time: datetime
+    description: Optional[str] = None
+
+    commodity: str
+    quantity: int
+
+    storename: str  # the store name
+
+    streetAddress: str
+    zipcode: float
+    city: str
+    state: str
+
+#extnds storebase class for creation
+class FullRecordCreate(FullRecordBase):
+    store_id: int
+
+#extends storebase class for reading.
+class FullRecord(FullRecordBase):
+    id: int  # ID of the item (post)
+    owner_id: int  # ID of the person who posted it
+
+    # tell the program to read the data even if it is not a dict, but an ORM model
+    class Config:
+        orm_mode = True

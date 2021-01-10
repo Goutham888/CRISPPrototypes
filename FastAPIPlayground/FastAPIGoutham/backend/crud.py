@@ -3,6 +3,7 @@
 # Also some password utils
 
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import text
 from datetime import datetime
 from sqlalchemy.dialects import postgresql
 from typing import Optional
@@ -64,10 +65,12 @@ def get_item(db: Session, item_id: int):
     return db.query(models.Item).filter(models.Item.id == item_id).first()
 
 # Get the item from the database, need to add a zipcode component to this
-def search_items(item: str, db: Session,  skip: int = 0, limit: int = 100):
-    return db.query(models.Item, models.Store).filter(models.Item.commodity == item).offset(skip).limit(limit).all()
-
-
+def search_items_by_zipcode(zipcode: int, item: str, db: Session,  skip: int = 0, limit: int = 100):
+    query="""SELECT items.*, stores.name as storeName, stores."streetAddress", stores.zipcode, stores.city, stores.state 
+                FROM items INNER JOIN stores 
+                ON items.store_id = stores.id
+                WHERE items.commodity=:item AND stores.zipcode=:zipcode"""
+    return db.execute(query, {"item": item, "zipcode":zipcode}).fetchall()
 
 # Create an item for a user
 # NOT PASSING the test
