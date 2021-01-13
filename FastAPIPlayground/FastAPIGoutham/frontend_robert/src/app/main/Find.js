@@ -86,7 +86,9 @@ function FindPage(props) {
                         <div className="p-24">
                             {results.map((record, index) => (
                             <div key={index}>
-                                <ItemCard item = {record.commodity} store={record.storename}/>
+                                <ItemCard item = {record.commodity} store={record.storename}
+                                        streetAddress={record.streetAddress} zipcode={record.zipcode}
+                                        city={record.city} state={record.state} time={record.time} quantity={record.quantity}/>
                                 <br></br>
                             </div>
                             ))}

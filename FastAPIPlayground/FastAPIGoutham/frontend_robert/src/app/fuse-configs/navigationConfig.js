@@ -35,6 +35,7 @@ const navigationConfig = [
 				icon: 'whatshot',
 				url: '/report'
 			}
+			//adding things here will make them display on the side bar
 		]
 	}
 ];

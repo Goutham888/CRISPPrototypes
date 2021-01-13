@@ -28,6 +28,39 @@ export default function ItemCard(props) {
   const classes = useStyles();
   const item=props.item;
   const store=props.store;
+  const streetAddress = props.streetAddress;
+  const zipcode = props.zipcode;
+  const city = props.city;
+  const state = props.state;
+  const time = props.time;
+  const quantity = props.quantity;
+
+  function getAddressHref() {
+    var href = streetAddress.replace(" ", "+");
+    href+=(",+"+city+",+"+state+",+"+zipcode);
+    return href;
+  }
+
+  function getTime(){
+    return new Date(time).toUTCString();
+  }
+
+  function getQuantityString(){
+    var quantityString;
+    switch (quantity) {
+      case 1:
+        quantityString = "very little";
+        break;
+      case 2:
+        quantityString = "a medium amount of";
+        break;
+      case 3:
+        quantityString = "a lot of";
+        break;
+    }
+    return quantityString;
+  }
+
 
   return (
     <Card className={classes.root}>
@@ -36,13 +69,13 @@ export default function ItemCard(props) {
             {item}
           </Typography>
             <Chip label={store}/>
-            <Chip label="12/11 3:30 pm"/>
+            <Chip label={getTime()}/>
           <Typography variant="body2" color="textSecondary" component="p">
-            As of 12/11 3:30 pm, there are lots of {item} at {store}
+            There is {getQuantityString()} {item} at {store}
           </Typography>
         </CardContent>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" href={"https://www.google.com/maps/place/"+getAddressHref()} target="_blank">
           Show Direction
         </Button>
         <Button size="small" color="primary">
